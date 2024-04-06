@@ -1,0 +1,47 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+      <div class="col-lg-4">
+          <form [formGroup]="itemForm" class="bg-light p-4 rounded">
+              <h3 class="mb-4">{{ isEditMode ? 'Edit' : 'Add' }} Item</h3>
+              <div class="mb-3">
+                  <label for="itemName" class="form-label">Item Name</label>
+                  <input class="form-control" formControlName="ItemName" placeholder="Enter item name">
+              </div>
+
+              <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea class="form-control" formControlName="Description" placeholder="Enter item description" rows="3"></textarea>
+              </div>
+
+              <div class="text-center">
+                  <button type="button" class="btn btn-dark me-2" (click)="clear()">Clear</button>
+                  <button type="button" class="btn btn-success ml-2" (click)="submit()">{{ isEditMode ? 'Update' : 'Submit' }}</button>
+              </div>
+          </form>
+      </div>
+
+      <div class="col-lg-8">
+          <table class="table table-striped table-bordered">
+              <thead class="thead-dark">
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Description</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of itemList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{item.ItemName}}</td>
+                      <td>{{item.Description}}</td>
+                      <td>
+                          <button type="button" class="btn btn-primary btn-sm me-2" (click)="edit(i)">Edit</button>
+                          <button type="button" class="btn btn-danger btn-sm ml-1" (click)="delete(i)">Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
